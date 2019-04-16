@@ -1,5 +1,5 @@
 const getAccessToken = (z, bundle) => {
-  const promise = z.request(`${process.env.BASE_URL}/oauth/access-token`, {
+  const promise = z.request(`${process.env.BASE_URL}/oauth2/access_token`, {
     method: 'POST',
     body: {
       //extra data pulled from the users query string
@@ -29,7 +29,7 @@ const getAccessToken = (z, bundle) => {
 };
 
 const refreshAccessToken = (z, bundle) => {
-  const promise = z.request(`${process.env.BASE_URL}/oauth/refresh-token`, {
+  const promise = z.request(`${process.env.BASE_URL}/oauth2/refresh_token`, {
     method: 'POST',
     body: {
       refresh_token: bundle.authData.refresh_token,
@@ -81,7 +81,7 @@ module.exports = {
     // Zapier generates the state and redirect_uri, you are responsible for providing the rest.
     // Note: can also be a function that returns a string
     authorizeUrl: {
-      url: `${process.env.BASE_URL}/oauth/authorize`,
+      url: `${process.env.BASE_URL}/oauth2/authorize`,
       params: {
         client_id: '{{process.env.CLIENT_ID}}',
         state: '{{bundle.inputData.state}}',

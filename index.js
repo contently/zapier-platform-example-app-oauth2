@@ -1,3 +1,6 @@
+const storySubmitted = require('./triggers/story_submitted');
+const awaitingReview = require('./triggers/awaiting_review');
+
 // You'll want to set these with either `CLIENT_ID=abc zapier test` or `zapier env 1.0.0 CLIENT_ID abc`
 process.env.BASE_URL = process.env.BASE_URL || 'https://auth-json-server.zapier.ninja';
 process.env.CLIENT_ID = process.env.CLIENT_ID || '1234';
@@ -34,6 +37,8 @@ const App = {
 
   // If you want your trigger to show up, you better include it here!
   triggers: {
+    [storySubmitted.key]: storySubmitted,
+    [awaitingReview.key]: awaitingReview
   },
 
   // If you want your searches to show up, you better include it here!
