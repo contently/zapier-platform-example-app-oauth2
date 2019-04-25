@@ -54,6 +54,7 @@ const getFallbackRealStory = (z, bundle) => {
 module.exports = {
   baseOperation: {
     inputFields: [
+      { key: 'publication_id', label:'Publications', dynamic: 'publication.id.name', list: true },
     ],
     type: 'hook',
     performUnsubscribe: unsubscribeHook,
@@ -61,6 +62,7 @@ module.exports = {
     performList: getFallbackRealStory,
 
     outputFields: [
+      {key: 'publication_id', label: 'Publication ID'}
     ]
   },
   subscribe: baseSubscribeHook,
