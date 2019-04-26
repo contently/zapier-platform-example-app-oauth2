@@ -21,7 +21,7 @@ module.exports = {
   type: 'oauth2',
   oauth2Config: {
     authorizeUrl: {
-      // Contently authorize endpoint
+      // Contently authorize endpoint, must return `code`
       url: `${process.env.BASE_URL}/oauth2/authorize`,
       params: {
         client_id: '{{process.env.CLIENT_ID}}',
@@ -69,7 +69,7 @@ const getAccessToken = (z, bundle) => {
 
 - the `TempCode` instance is destroyed and the `access_code` attribute is returned as JSON
 
-- JSON is recieved via `promise` in `getAccessToken` back in Zapier app, which returns the `access_token`, thus setting it in `bundle.authData` (the setting is not explicit in the function, it happens from the `access_token` as the final return value)
+- JSON is recieved via `promise` in `getAccessToken` back in Zapier app, which sets the `access_token` in `bundle.authData` (this setting is not explicit, it happens from `access_token` being the final return value of the function)
 
 ```js
 // beginning of getAccessToken function, see above snippet
@@ -86,3 +86,7 @@ const getAccessToken = (z, bundle) => {
   });
 };
 ```
+
+You now can use the token in the `SubScribeHook` function for triggers (see `story_submitted.js`) by calling `bundle.authData.access_token`. You will need to pass it to Contently to create the appropriate webhook.
+
+Woot woot!!!
