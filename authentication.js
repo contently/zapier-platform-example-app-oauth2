@@ -51,6 +51,7 @@ module.exports = {
   type: 'oauth2',
   oauth2Config: {
     authorizeUrl: {
+      // Contently authorize endpoint
       url: `${process.env.BASE_URL}/oauth2/authorize`,
       params: {
         client_id: '{{process.env.CLIENT_ID}}',
