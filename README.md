@@ -6,9 +6,9 @@ A barebones app that has OAuth2 setup to interact with Contently!
 
 ## Current Oauth2 Flow:
 
-For the official Zapier documentation, visit: https://github.com/zapier/zapier-platform-cli#oauth2
+For the official Zapier Oauth2 documentation, visit: https://github.com/zapier/zapier-platform-cli#oauth2
 
-The Zapier code for authentication can be found in `/authentication.js` and the flow is as follows:
+The Zapier app code for authentication can be found in `/authentication.js` and the flow is as follows:
 
 - `authorizeUrl` calls Contently's `/authorize` enpoint, passing various params including:
   -  `state` used by Zapier for verification purposes
@@ -87,6 +87,30 @@ const getAccessToken = (z, bundle) => {
 };
 ```
 
-You now can use the token in the `SubScribeHook` function for triggers (see `story_submitted.js`) by calling `bundle.authData.access_token`. You will need to pass it to Contently to create the appropriate webhook.
+- The `testAuth` function is called immediate after, hitting the `/test_auth` endpoint in Contently. It will validate if there is a `UserIntegration` instance that matches the `access_token` (Note: this is also the function that runs when you click the 'test' button in Zapier)
+
+```js
+const testAuth = (z, bundle) => {
+  // Normally you want to make a request to an endpoint that is either specifically designed to test auth, or one that
+  // every user will have access to, such as an account or profile endpoint like /me.
+  const promise = z.request(`${process.env.BASE_URL}/oauth2/test_auth`, {
+    method: 'GET',
+    params: {
+      access_token: bundle.authData.access_token
+    }
+  });
+
+  // This method can return any truthy value to indicate the credentials are valid.
+  // Raise an error to show
+  return promise.then((response) => {
+    if (response.status === 401) {
+      throw new Error('The access token you supplied is not valid');
+    }
+    return z.JSON.parse(response.content);
+  });
+};
+```
+
+You now can use the token in the `SubScribeHook` function for triggers (see `story_submitted.js`) by calling `bundle.authData.access_token`. You will need to pass it to Contently to find the correct `UserIntegration` and create the appropriate webhook.
 
 Woot woot!!!
