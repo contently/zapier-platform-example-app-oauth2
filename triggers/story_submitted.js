@@ -4,7 +4,7 @@ const subscribeHook = (z, bundle) => {
   return baseUtils.subscribe(
     z,
     bundle.targetUrl,
-    bundle.authData.api_key,
+    bundle.authData.access_token,
     "story_submitted",
     bundle.meta.zap.id
   )
