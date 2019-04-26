@@ -2,7 +2,6 @@ const getAccessToken = (z, bundle) => {
   const promise = z.request(`${process.env.BASE_URL}/oauth2/access_token`, {
     method: 'POST',
     body: {
-      //extra data pulled from the users query string
       accountDomain: bundle.cleanedRequest.querystring.accountDomain,
       code: bundle.inputData.code,
       client_id: process.env.CLIENT_ID,
@@ -21,10 +20,8 @@ const getAccessToken = (z, bundle) => {
     }
 
     const result = JSON.parse(response.content);
-    // const userId = result.user_id.toString();
     return {
       access_token: result.access_token
-      // user_id: userId
     };
   });
 };
@@ -33,7 +30,6 @@ const getAccessToken = (z, bundle) => {
 const testAuth = (z, bundle) => {
   // Normally you want to make a request to an endpoint that is either specifically designed to test auth, or one that
   // every user will have access to, such as an account or profile endpoint like /me.
-
   const promise = z.request(`${process.env.BASE_URL}/oauth2/test_auth`, {
     method: 'GET',
     params: {
