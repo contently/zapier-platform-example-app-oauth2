@@ -111,6 +111,26 @@ const testAuth = (z, bundle) => {
 };
 ```
 
-You now can use the token in the `SubScribeHook` function for triggers (see `story_submitted.js`) by calling `bundle.authData.access_token`. You will need to pass it to Contently to find the correct `UserIntegration` and create the appropriate webhook.
+You now can use the token in the `SubscribeHook` function for triggers (see `story_submitted.js`) by calling `bundle.authData.access_token`. You will need to pass it to Contently to find the correct `UserIntegration` and create the appropriate webhook.
 
 Woot woot!!!
+
+## Outstanding issues to address (including Contently platform):
+
+- This version of the Zapier CLI app should support multi-pub select as an option, as this is no longer something we would handle on the Integrations page (see `publication.js` for current implementation)
+  - A uniqueness validation has to be put on the pub dropdowns, solution TBD
+  - pub IDs selected should be passed to `SubscribeHook` so they can be incorporated into `UserIntegration` model
+
+- Zapier CLI App TESTING :P
+
+- `TempCode` and `UserIntegration` models to be re-written(?) Right now they're only one-off models created for proof of concept, can they be folded into existing functionality?
+
+- If `UserIntegration` is kept, it must be able store multiple pub IDs
+
+- Contently controllers `oauth2_controller` and `eligible_pubs`, same issue as ^, can they be re-worked into exsisting controllers?
+
+- Double-check security for all routes
+
+- re-work ZapierWebhook trigger to handle new functionality
+
+- re-work controllers that handle current ZapierWebhooks to ensure they can handle new functionality
