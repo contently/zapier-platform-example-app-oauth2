@@ -72,7 +72,7 @@ const getAccessToken = (z, bundle) => {
 - JSON is recieved via `promise` in `getAccessToken` back in Zapier app, which sets the `access_token` in `bundle.authData` (this setting is not explicit, it happens from `access_token` being the final return value of the function)
 
 ```js
-// beginning of getAccessToken function, see above snippet
+// see above snippet for beginning of getAccessToken function
 
   return promise.then((response) => {
     if (response.status !== 200) {
