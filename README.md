@@ -8,6 +8,9 @@ A barebones app that has OAuth2 setup to interact with Contently!
 
 For the official Zapier Oauth2 documentation, visit: https://github.com/zapier/zapier-platform-cli#oauth2
 
+For the WIP Contently branch with models and endpoints:
+https://github.com/contently/contently/pull/17030/files
+
 The Zapier app code for authentication can be found in `/authentication.js` and the flow is as follows:
 
 - `authorizeUrl` calls Contently's `/authorize` enpoint, passing various params including:
