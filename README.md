@@ -137,3 +137,14 @@ Woot woot!!!
 - re-work ZapierWebhook trigger to handle new functionality
 
 - re-work controllers that handle current ZapierWebhooks to ensure they can handle new functionality
+
+
+## Doorkeeper walkthroughs and documentation:
+
+- https://doorkeeper-provider.herokuapp.com/
+- https://www.sitepoint.com/getting-started-with-doorkeeper-and-oauth-2-0/
+- https://jetrockets.pro/blog/protocol-oauth2-let-s-play-with-doorkeeper-omniauth-oauth2
+- http://railscasts.com/episodes/353-oauth-with-doorkeeper?autoplay=true (very old, from 2012 but nice overview of doorkeeper)
+
+## Explanation of client ID and secret:
+- https://www.oauth.com/oauth2-servers/client-registration/client-id-secret/
