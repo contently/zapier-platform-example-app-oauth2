@@ -4,6 +4,8 @@
 
 A barebones app that has OAuth2 setup to interact with Contently!
 
+![Drag Racing](oauth2flow.png)
+
 ## Current Oauth2 Flow:
 
 For the official Zapier Oauth2 documentation, visit: https://github.com/zapier/zapier-platform-cli#oauth2
