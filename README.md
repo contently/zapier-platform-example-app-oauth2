@@ -4,7 +4,18 @@
 
 A barebones app that has OAuth2 setup to interact with Contently!
 
-![Drag Racing](oauth2flow.png)
+## Overview of Oauth:
+
+Note: We'll be dealing with Oauth2 only
+
+OAuth is a standard that applications can use to provide client applications with “secure delegated access”.
+
+It works over HTTP and authorizes Devices, APIs, Servers and Applications with access tokens rather than credentials
+
+It allows users to use applications like Facebook, Twitter etc. to securely login to other applications and/or access their resources
+
+![Example flow](oauth2flow.png)
+source: https://www.youtube.com/watch?v=bzGKgC3N7SY
 
 ## Current Oauth2 Flow:
 
