@@ -155,6 +155,7 @@ Woot woot!!!
 ## Doorkeeper walkthroughs and documentation:
 
 - https://doorkeeper-provider.herokuapp.com/
+- https://github.com/doorkeeper-gem/doorkeeper (Github)
 - https://www.sitepoint.com/getting-started-with-doorkeeper-and-oauth-2-0/
 - https://jetrockets.pro/blog/protocol-oauth2-let-s-play-with-doorkeeper-omniauth-oauth2
 - http://railscasts.com/episodes/353-oauth-with-doorkeeper?autoplay=true (very old, from 2012 but nice overview of doorkeeper)
