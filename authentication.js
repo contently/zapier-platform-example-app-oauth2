@@ -1,5 +1,5 @@
 const getAccessToken = (z, bundle) => {
-  const promise = z.request(`${process.env.BASE_URL}/oauth/access_token`, {
+  const promise = z.request(`${process.env.BASE_URL}/oauth/token`, {
     method: 'POST',
     body: {
       accountDomain: bundle.cleanedRequest.querystring.accountDomain,
