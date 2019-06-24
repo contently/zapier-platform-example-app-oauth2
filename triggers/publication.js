@@ -2,7 +2,7 @@ const sample = require('./sample_pub_list');
 
 const triggerPublication = (z, bundle) => {
   const options = {
-    url: '{{process.env.BASE_URL}}/api/v1/eligible_pubs',
+    url: '{{process.env.BASE_URL}}/api/v1/zapier_resources/eligible_pubs',
     headers: {
       'Content-type': 'application/json'
     },

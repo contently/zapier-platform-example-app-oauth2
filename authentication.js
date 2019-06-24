@@ -1,11 +1,13 @@
 const getAccessToken = (z, bundle) => {
   const promise = z.request(`${process.env.BASE_URL}/oauth/token`, {
     method: 'POST',
-    body: {
-      accountDomain: bundle.cleanedRequest.querystring.accountDomain,
+    params: {
+      // accountDomain: bundle.cleanedRequest.querystring.accountDomain,
       code: bundle.inputData.code,
       client_id: process.env.CLIENT_ID,
       client_secret: process.env.CLIENT_SECRET,
+      state: bundle.inputData.state,
+      redirect_uri: bundle.inputData.redirect_uri,
       grant_type: 'authorization_code'
     },
     headers: {
@@ -30,7 +32,7 @@ const getAccessToken = (z, bundle) => {
 const testAuth = (z, bundle) => {
   // Normally you want to make a request to an endpoint that is either specifically designed to test auth, or one that
   // every user will have access to, such as an account or profile endpoint like /me.
-  const promise = z.request(`${process.env.BASE_URL}/oauth/test_auth`, {
+  const promise = z.request(`${process.env.BASE_URL}/api/v1/zapier_resources/me`, {
     method: 'GET',
     params: {
       access_token: bundle.authData.access_token
