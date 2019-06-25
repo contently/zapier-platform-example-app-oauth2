@@ -54,20 +54,7 @@ const getFallbackRealStory = (z, bundle) => {
 module.exports = {
   baseOperation: {
     inputFields: [
-      {
-        key: 'customize_publication_selection',
-        type: 'boolean',
-        helpText: 'Allow me select which publications I want this zap to activate for (by deault all publications you are staffed on will be included in this zap)',
-        altersDynamicFields: true
-      },
-      function(z, bundle) {
-        if (bundle.inputData.customize_publication_selection === 'true') {
-          return [
-            { key: 'publication_id', label:'Publications', dynamic: 'publication.id.name', list: true },
-          ];
-        }
-        return [];
-      }
+      { key: 'publication_id', label:'Publications', dynamic: 'publication.id.name', list: true },
     ],
     type: 'hook',
     performUnsubscribe: unsubscribeHook,
