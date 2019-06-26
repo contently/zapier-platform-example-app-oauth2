@@ -4,15 +4,16 @@ const subscribeHook = (z, bundle) => {
   return baseUtils.subscribe(
     z,
     bundle.targetUrl,
-    bundle.authData.api_key,
+    bundle.authData.access_token,
     "awaiting_review",
-    bundle.meta.zap.id
+    bundle.meta.zap.id,
+    [...new Set(bundle.inputData.publication_ids)]
   )
 };
 
 const getFallbackRealStory = (z, bundle) => {
   const options = {
-    url: '{{process.env.SUBDOMAIN}}/api/v1/sample_story',
+    url: '{{process.env.BASE_URL}}/api/v1/sample_story',
     params: {
       include: 'steps'
     }
