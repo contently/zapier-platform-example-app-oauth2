@@ -7,7 +7,7 @@ const subscribeHook = (z, bundle) => {
     bundle.authData.access_token,
     "story_submitted",
     bundle.meta.zap.id,
-    bundle.inputData.publication_ids
+    [...new Set(bundle.inputData.publication_ids)]
   )
 };
 
