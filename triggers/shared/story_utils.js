@@ -1,14 +1,15 @@
-const baseSubscribeHook = (z, targetUrl, apiKey, eventType, zapID) => {
+const baseSubscribeHook = (z, targetUrl, accessToken, eventType, zapID, pubIds) => {
   // targetUrl has the Hook URL this app should call when a story is submitted.
   const data = {
     url: targetUrl,
-    api_key: apiKey,
+    access_token: accessToken,
     event_type: eventType,
-    zap_id: zapID
+    zap_id: zapID,
+    publication_ids: pubIds
   };
 
   const options = {
-    url: '{{process.env.SUBDOMAIN}}/api/v1/zapier_hooks',
+    url: '{{process.env.BASE_URL}}/api/v1/zapier_hooks',
     headers: {
       'Content-type': 'application/json'
     },
@@ -24,13 +25,16 @@ const baseSubscribeHook = (z, targetUrl, apiKey, eventType, zapID) => {
 
 const unsubscribeHook = (z, bundle) => {
   const contently_zapier_webhook_id = bundle.subscribeData.id;
-
+  const data = {
+    access_token: bundle.authData.access_token
+  }
   const options = {
-    url: `{{process.env.SUBDOMAIN}}/api/v1/zapier_hooks/${contently_zapier_webhook_id}`,
+    url: `{{process.env.BASE_URL}}/api/v1/zapier_hooks/${contently_zapier_webhook_id}`,
     headers: {
       'Content-type': 'application/json'
     },
-    method: 'DELETE'
+    method: 'DELETE',
+    body: JSON.stringify(data)
   };
 
   // You may return a promise or a normal data structure from any perform method.
@@ -44,7 +48,7 @@ const getStory = (z, bundle) => {
 
 const getFallbackRealStory = (z, bundle) => {
   const options = {
-    url: '{{process.env.SUBDOMAIN}}/api/v1/sample_story',
+    url: '{{process.env.BASE_URL}}/api/v1/sample_story',
   };
 
   return z.request(options)
@@ -54,7 +58,7 @@ const getFallbackRealStory = (z, bundle) => {
 module.exports = {
   baseOperation: {
     inputFields: [
-      { key: 'publication_id', label:'Publications', dynamic: 'publication.id.name', list: true },
+      { key: 'publication_ids', label:'Publications', dynamic: 'publication.id.name', list: true },
     ],
     type: 'hook',
     performUnsubscribe: unsubscribeHook,
