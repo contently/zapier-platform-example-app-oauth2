@@ -1,5 +1,5 @@
 const getAccessToken = (z, bundle) => {
-  const promise = z.request(`${process.env.BASE_URL}/oauth/token`, {
+  const promise = z.request(`${process.env.BASE_URL}/oauth/access-token`, {
     method: 'POST',
     params: {
       // accountDomain: bundle.cleanedRequest.querystring.accountDomain,
@@ -83,7 +83,6 @@ module.exports = {
   type: 'oauth2',
   oauth2Config: {
     authorizeUrl: {
-      // Contently authorize endpoint, must return `code`
       url: `${process.env.BASE_URL}/oauth/authorize`,
       params: {
         client_id: '{{process.env.CLIENT_ID}}',
