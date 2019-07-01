@@ -30,7 +30,7 @@ const getAccessToken = (z, bundle) => {
 };
 
 const refreshAccessToken = (z, bundle) => {
-  const promise = z.request(`${process.env.BASE_URL}/oauth/token`, {
+  const promise = z.request(`${process.env.BASE_URL}/oauth/refresh-token`, {
     method: 'POST',
     body: {
       refresh_token: bundle.authData.refresh_token,
