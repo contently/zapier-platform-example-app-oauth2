@@ -1,5 +1,6 @@
 require('should');
 
+const nock = require('nock');
 const zapier = require('zapier-platform-core');
 
 const App = require('../index');
@@ -85,10 +86,21 @@ describe('oauth2 app', () => {
   });
 
   it('includes the access token in future requests', () => {
+    process.env.BASE_URL = 'https://example.test';
+    const response = {
+      username: 'Bret'
+    };
+    nock('https://example.test', {
+      reqheaders: {
+        'authorization': 'Bearer a_token'
+      }
+    })
+    .get('/api/v1/zapier_resources/me')
+    .reply(200, response)
+
     const bundle = {
       authData: {
-        access_token: 'a_token',
-        refresh_token: 'a_refresh_token'
+        access_token: 'a_token'
       },
     };
 
@@ -96,6 +108,7 @@ describe('oauth2 app', () => {
       .then((result) => {
         result.should.have.property('username');
         result.username.should.eql('Bret');
+        delete process.env.BASE_URL;
       });
   });
 });
