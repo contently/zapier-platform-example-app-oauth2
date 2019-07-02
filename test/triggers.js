@@ -35,7 +35,11 @@ describe('triggers', () => {
     it('should hit sample story endpoint and return results', (done) => {
       const response = [{title: 'giants win'}];
       // The access-token is included in beforeRequest function
-      nock('https://example.test')
+      nock('https://example.test', {
+        reqheaders: {
+          'authorization': 'Bearer a_token'
+        }
+      })
       .get('/api/v1/sample_story')
       .reply(200, response)
 
@@ -44,7 +48,7 @@ describe('triggers', () => {
           frontend: true
         },
         authData: {
-          access_token: 'a_tboken'
+          access_token: 'a_token'
         }
       };
 
@@ -62,7 +66,11 @@ describe('triggers', () => {
 
     it('should hit subscribe endpoint', (done) => {
       const response = {message: 'success'};
-      nock('https://example.test')
+      nock('https://example.test', {
+        reqheaders: {
+          'authorization': 'Bearer a_token'
+        }
+      })
       .post('/api/v1/zapier_hooks',
         {
           url: 'http://foo.bar',
@@ -99,7 +107,11 @@ describe('triggers', () => {
 
     it('should hit unsubscribe endpoint', (done) => {
       const response = {message: 'success'};
-      nock('https://example.test')
+      nock('https://example.test', {
+        reqheaders: {
+          'authorization': 'Bearer a_token'
+        }
+      })
       .delete('/api/v1/zapier_hooks/1')
       .reply(200, response)
 
@@ -142,7 +154,11 @@ describe('triggers', () => {
 
     it('should hit sample story endpoint with param and return results', (done) => {
       const response = [{title: 'giants win'}];
-      nock('https://example.test')
+      nock('https://example.test', {
+        reqheaders: {
+          'authorization': 'Bearer a_token'
+        }
+      })
       .get('/api/v1/sample_story?include=steps')
       .reply(200, response)
 
@@ -169,7 +185,11 @@ describe('triggers', () => {
 
     it('should hit subscribe endpoint', (done) => {
       const response = {message: 'success'};
-      nock('https://example.test')
+      nock('https://example.test', {
+        reqheaders: {
+          'authorization': 'Bearer a_token'
+        }
+      })
       .post('/api/v1/zapier_hooks',
         {
           url: 'http://foo.bar',
@@ -206,7 +226,11 @@ describe('triggers', () => {
 
     it('should hit unsubscribe endpoint', (done) => {
       const response = {message: 'success'};
-      nock('https://example.test')
+      nock('https://example.test', {
+        reqheaders: {
+          'authorization': 'Bearer a_token'
+        }
+      })
       .delete('/api/v1/zapier_hooks/1')
       .reply(200, response)
 
