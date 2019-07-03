@@ -1,8 +1,7 @@
-const baseSubscribeHook = (z, targetUrl, accessToken, eventType, zapID, pubIds) => {
+const baseSubscribeHook = (z, targetUrl, eventType, zapID, pubIds) => {
   // targetUrl has the Hook URL this app should call when a story is submitted.
   const data = {
     url: targetUrl,
-    access_token: accessToken,
     event_type: eventType,
     zap_id: zapID,
     publication_ids: pubIds
@@ -46,7 +45,7 @@ const getStory = (z, bundle) => {
   return [bundle.cleanedRequest];
 };
 
-const getFallbackRealStory = (z, bundle) => {
+const getFallbackRealStory = (z) => {
   const options = {
     url: '{{process.env.BASE_URL}}/api/v1/sample_story',
   };

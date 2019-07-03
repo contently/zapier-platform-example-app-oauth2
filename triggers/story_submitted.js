@@ -4,7 +4,6 @@ const subscribeHook = (z, bundle) => {
   return baseUtils.subscribe(
     z,
     bundle.targetUrl,
-    bundle.authData.access_token,
     "story_submitted",
     bundle.meta.zap.id,
     [...new Set(bundle.inputData.publication_ids)]

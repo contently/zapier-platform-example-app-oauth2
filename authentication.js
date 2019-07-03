@@ -2,7 +2,6 @@ const getAccessToken = (z, bundle) => {
   const promise = z.request(`${process.env.BASE_URL}/oauth/access-token`, {
     method: 'POST',
     body: {
-      // accountDomain: bundle.cleanedRequest.querystring.accountDomain,
       code: bundle.inputData.code,
       client_id: process.env.CLIENT_ID,
       client_secret: process.env.CLIENT_SECRET,
@@ -59,7 +58,7 @@ const refreshAccessToken = (z, bundle) => {
 };
 
 
-const testAuth = (z, bundle) => {
+const testAuth = (z) => {
   // Normally you want to make a request to an endpoint that is either specifically designed to test auth, or one that
   // every user will have access to, such as an account or profile endpoint like /me.
   const promise = z.request(`${process.env.BASE_URL}/api/v1/zapier_resources/me`, {
@@ -103,5 +102,5 @@ module.exports = {
   // method after the OAuth flow is complete to ensure everything is setup properly.
   test: testAuth,
   // assuming "username" is a key returned from the test
-  connectionLabel: '{{username}}'
+  connectionLabel: 'Username: {{username}}'
 };

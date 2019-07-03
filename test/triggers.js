@@ -74,7 +74,6 @@ describe('triggers', () => {
       .post('/api/v1/zapier_hooks',
         {
           url: 'http://foo.bar',
-          access_token: 'a_token',
           event_type: 'story_submitted',
           zap_id: 'zap_id',
           publication_ids: [1, 2, 3]
@@ -193,7 +192,6 @@ describe('triggers', () => {
       .post('/api/v1/zapier_hooks',
         {
           url: 'http://foo.bar',
-          access_token: 'a_token',
           event_type: 'awaiting_review',
           zap_id: "zap_id",
           publication_ids: [1, 2, 3]
